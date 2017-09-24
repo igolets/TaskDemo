@@ -1,0 +1,60 @@
+﻿@model TaskDemo.Web.Models.TaskListModel
+@{
+    ViewBag.Title = "Task List";
+}
+
+<div class="jumbotron">
+    <h1>Simple Task Manager</h1>
+    <p class="lead">Demo ASP.NET application for managing tasks.</p>
+</div>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", new {ParentId = Model.Id})">Add New Task</a>
+    @if (Model.Id.HasValue)
+    {
+        <a class="btn btn-link" href="@Url.Action("Index", new {Id=Model.ParentId})">Up One Level</a>
+    }
+</p>
+
+<table class="table table-bordered table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                Task name
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Tasks.Length == 0)
+        {
+            <tr>
+                <td colspan="2">
+                    No tasks there.
+                </td>
+            </tr>
+        }
+        @foreach (var task in Model.Tasks)
+        {
+            <tr>
+                <td class="text-left" scope="row">
+                    <a href="@Url.Action("Index", new {task.Id})">@Html.Encode(task.Name)</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", new {task.Id})">Edit</a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", new {task.Id})" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", new {ParentId = Model.Id})">Add New Task</a>
+    @if (Model.Id.HasValue)
+    {
+        <a class="btn btn-link" href="@Url.Action("Index", new {Id=Model.ParentId})">Up One Level</a>
+    }
+</p>

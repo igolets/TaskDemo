@@ -1,0 +1,15 @@
+﻿@model TaskDemo.Web.Models.TaskDeleteModel
+
+@{
+    ViewBag.Title = "Delete Error";
+}
+
+<h2>Can not delete task</h2>
+
+<div class="alert alert-danger" role="alert">
+    @Html.Encode(Model.Message)
+</div>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Index", new {Id = Model.ParentId})">Back to list</a>
+    <a class="btn btn-primary" href="@Url.Action("Index", new {Model.Id})">Open task</a>
+</p>
