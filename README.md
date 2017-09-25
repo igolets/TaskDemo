@@ -15,6 +15,7 @@ Feel free to contact me if you have any questions/suggestions
 ## How to run
   - Clone the repo
   - Open solution in Visual Studio and build (I've used VS2017, but no new C# features used, it should work on earlier versions of Visual Studio)
+  - Restore NUGET packages
   - Create new empty DB on MSSQL server and update web.config file in TaskDemo.Web project (I've used Localdb, but more mature versions should work as well).
   - Run TaskDemo.Web project, it will create DB itself
 
