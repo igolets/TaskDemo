@@ -45,7 +45,8 @@ Feel free to contact me if you have any questions/suggestions
   - No authentication there, but it is possible to add this and unit test authentication logic. This is a bit more compex task, so it is out of the scope
   - WebAPI controllers require some specific efforts to use Dependency Injection. All code is there, if you add WebAPI it should work and you'll be able to unit test thise controllers too
 
-
+## Author
+Ilya Golets (ilya@golets.ru)
 
 ## License
 
