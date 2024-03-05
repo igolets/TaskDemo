@@ -1,9 +1,9 @@
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.WebApi;
+using Unity;
 using TaskDemo.Services.Web.Unity;
+using Unity.AspNet.WebApi;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TaskDemo.Web.App_Start.UnityWebApiActivator), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(TaskDemo.Web.App_Start.UnityWebApiActivator), "Shutdown")]

@@ -20,7 +20,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            var empty = new Task[0];
+            var empty = Array.Empty<Task>();
             taskRepoMock.Setup(r => r.GetQ(null)).Returns(empty.AsQueryable());
             var ctrl = new HomeController(taskRepoMock.Object);
 
@@ -87,7 +87,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            taskRepoMock.Setup(r => r.GetByID(5)).Returns((Task)null);
+            taskRepoMock.Setup(r => r.GetById(5)).Returns((Task)null);
             var ctrl = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -117,7 +117,7 @@ namespace TaskDemo.Web.Tests.Controllers
                 new Task{Id = 5, ParentId = testParent2.Id, Parent = testParent2, Name = "c4"}
             };
             testParent3.Children = testData.Where(t => t.ParentId == testParent3.Id).ToArray();
-            taskRepoMock.Setup(r => r.GetByID(3)).Returns(testParent3);
+            taskRepoMock.Setup(r => r.GetById(3)).Returns(testParent3);
             var ctrl = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -155,7 +155,7 @@ namespace TaskDemo.Web.Tests.Controllers
                 new Task{Id = 5, ParentId = testParent2.Id, Parent = testParent2, Name = "c4"}
             };
             testParent3.Children = testData.Where(t => t.ParentId == testParent3.Id).ToArray();
-            taskRepoMock.Setup(r => r.GetByID(3)).Returns(testParent3);
+            taskRepoMock.Setup(r => r.GetById(3)).Returns(testParent3);
             var ctrl = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -198,7 +198,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(new Task());
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(new Task());
             var controller = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -217,7 +217,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns((Task)null);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns((Task)null);
             var controller = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -365,7 +365,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(new Task{Id = 1, Name = "a1", ParentId = 2});
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(new Task{Id = 1, Name = "a1", ParentId = 2});
             var controller = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -386,7 +386,7 @@ namespace TaskDemo.Web.Tests.Controllers
         {
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns((Task)null);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns((Task)null);
             var controller = new HomeController(taskRepoMock.Object);
 
             // Act
@@ -432,7 +432,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var inModel = new TaskEditModel { Id = 1, Name = "a1" };
             var callbackTask = new Task{Id = 1, ParentId = 2, Name = "test"};
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(callbackTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(callbackTask);
             taskRepoMock.Setup(r => r.Save()).Verifiable();
 
             // Act
@@ -458,7 +458,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var inModel = new TaskEditModel { Id = 1, Name = "a1" };
             var callbackTask = new Task { Id = 1, ParentId = 2, Name = "test" };
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(callbackTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(callbackTask);
             var ex = new Exception("Cannot insert duplicate key row in object 'dbo.Task' with unique index 'IX_ParentId_Name' some other text");
             var dbEx = new System.Data.Entity.Infrastructure.DbUpdateException("", new Exception("", ex));
             taskRepoMock.Setup(r => r.Save()).Throws(dbEx);
@@ -491,7 +491,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var inModel = new TaskEditModel { Id = 1, Name = "a1" };
             var callbackTask = new Task { Id = 1, ParentId = 2, Name = "test" };
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(callbackTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(callbackTask);
             var ex = new Exception("Wrong exception message");
             var dbEx = new System.Data.Entity.Infrastructure.DbUpdateException("", new Exception("", ex));
             taskRepoMock.Setup(r => r.Save()).Throws(dbEx);
@@ -514,7 +514,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var inModel = new TaskEditModel { Id = 1, Name = "a1" };
             var callbackTask = new Task { Id = 1, ParentId = 2, Name = "test" };
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(callbackTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(callbackTask);
             taskRepoMock.Setup(r => r.Save()).Throws(new NotSupportedException());
 
             // Act
@@ -533,7 +533,7 @@ namespace TaskDemo.Web.Tests.Controllers
             // Arrange
             var taskRepoMock = new Mock<IRepository<Task>>();
             var controller = new HomeController(taskRepoMock.Object);
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns((Task)null);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns((Task)null);
             taskRepoMock.Verify(r => r.Delete(It.IsAny<Task>()), Times.Never);
             taskRepoMock.Verify(r => r.Save(), Times.Never);
 
@@ -555,7 +555,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var taskRepoMock = new Mock<IRepository<Task>>();
             var controller = new HomeController(taskRepoMock.Object);
             var testTask = new Task{Id=1, ParentId = 2, Name = "a1", Children = new []{new Task()}};
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(testTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(testTask);
             taskRepoMock.Verify(r => r.Delete(It.IsAny<Task>()), Times.Never);
             taskRepoMock.Verify(r => r.Save(), Times.Never);
 
@@ -582,7 +582,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var testTask = new Task { Id = 1, ParentId = 2, Name = "a1", Children = new List<Task>()};
             Task callbackTask = null;
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(testTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(testTask);
             taskRepoMock.Setup(r => r.Delete(It.IsAny<Task>())).Callback((Task task) => { callbackTask = task; });
             var ex = new Exception("The DELETE statement conflicted with the SAME TABLE REFERENCE constraint some other text");
             var dbEx = new System.Data.Entity.Infrastructure.DbUpdateException("", new Exception("", ex));
@@ -612,7 +612,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var testTask = new Task { Id = 1, ParentId = 2, Name = "a1", Children = new List<Task>() };
             Task callbackTask = null;
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(testTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(testTask);
             taskRepoMock.Setup(r => r.Delete(It.IsAny<Task>())).Callback((Task task) => { callbackTask = task; });
             var ex = new Exception("Wrong exception message");
             var dbEx = new System.Data.Entity.Infrastructure.DbUpdateException("", new Exception("", ex));
@@ -634,7 +634,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var controller = new HomeController(taskRepoMock.Object);
             var testTask = new Task { Id = 1, ParentId = 2, Name = "a1", Children = new List<Task>() };
             Task callbackTask = null;
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(testTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(testTask);
             taskRepoMock.Setup(r => r.Delete(It.IsAny<Task>())).Callback((Task task) => { callbackTask = task; });
             taskRepoMock.Setup(r => r.Save()).Throws(new NotSupportedException());
 
@@ -653,7 +653,7 @@ namespace TaskDemo.Web.Tests.Controllers
             var taskRepoMock = new Mock<IRepository<Task>>();
             var controller = new HomeController(taskRepoMock.Object);
             var testTask = new Task { Id = 1, ParentId = 2, Name = "a1", Children = new List<Task>()};
-            taskRepoMock.Setup(r => r.GetByID(1)).Returns(testTask);
+            taskRepoMock.Setup(r => r.GetById(1)).Returns(testTask);
 
             // Act
             var rez = controller.Delete(1);

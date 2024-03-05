@@ -9,7 +9,7 @@ namespace TaskDemo.Data.Repository
     /// Common implementation for TaskContext
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    /// <seealso cref="TaskDemo.Data.Common.Repository.EntityFramework.ReadonlyRepositoryEfBase{TaskDemo.Data.EF.TaskContext, TEntity}" />
+    /// <seealso cref="ReadonlyRepositoryEfBase{TaskContext, TEntity}" />
     /// <remarks>
     ///     Override if need to add any common logic into repository.
     /// </remarks>

@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Unity;
 
 namespace TaskDemo.Services.Web.Unity
 {

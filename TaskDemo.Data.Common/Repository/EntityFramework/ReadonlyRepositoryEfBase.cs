@@ -17,12 +17,12 @@ namespace TaskDemo.Data.Common.Repository.EntityFramework
         public ReadonlyRepositoryEfBase(IDataSession session)
         {
             Context = (TContext)((EfDataSession)session).ContextInternal;
-            DBSet = Context.Set<TEntity>();
+            DbSet = Context.Set<TEntity>();
         }
 
         public virtual IQueryable<TEntity> GetQ(Expression<Func<TEntity, bool>> filter = null)
         {
-            IQueryable<TEntity> query = DBSet;
+            IQueryable<TEntity> query = DbSet;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -30,9 +30,9 @@ namespace TaskDemo.Data.Common.Repository.EntityFramework
             return query;
         }
 
-        public virtual TEntity GetByID(params object[] keyValues)
+        public virtual TEntity GetById(params object[] keyValues)
         {
-            return DBSet.Find(keyValues);
+            return DbSet.Find(keyValues);
         }
 
         #region IDisposable Support
@@ -73,6 +73,6 @@ namespace TaskDemo.Data.Common.Repository.EntityFramework
         #endregion
 
         protected readonly TContext Context;
-        protected readonly DbSet<TEntity> DBSet;
+        protected readonly DbSet<TEntity> DbSet;
     }
 }

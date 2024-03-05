@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace TaskDemo.Services.Web.Unity
 {

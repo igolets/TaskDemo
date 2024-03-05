@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaskDemo.Web.Models
+﻿namespace TaskDemo.Web.Models
 {
     public class TaskModel
     {
@@ -10,7 +8,7 @@ namespace TaskDemo.Web.Models
             set;
         }
 
-        public String Name
+        public string Name
         {
             get;
             set;

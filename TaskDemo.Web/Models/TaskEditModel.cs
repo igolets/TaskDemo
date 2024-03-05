@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TaskDemo.Web.Models
 {
@@ -20,7 +19,7 @@ namespace TaskDemo.Web.Models
         [Display(Name = "Task Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Task name is required")]
         [MaxLength(250, ErrorMessage = "Task name should not have more than 250 chars")]
-        public String Name
+        public string Name
         {
             get;
             set;

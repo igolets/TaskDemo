@@ -21,7 +21,7 @@ namespace TaskDemo.Data.Common.Repository.EntityFramework
 
         public virtual void Delete(params object[] keyValues)
         {
-            TEntity entityToDelete = DBSet.Find(keyValues);
+            TEntity entityToDelete = DbSet.Find(keyValues);
             Delete(entityToDelete);
         }
 
@@ -29,9 +29,9 @@ namespace TaskDemo.Data.Common.Repository.EntityFramework
         {
             if (Context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                DBSet.Attach(entityToDelete);
+                DbSet.Attach(entityToDelete);
             }
-            DBSet.Remove(entityToDelete);
+            DbSet.Remove(entityToDelete);
         }
 
         public virtual void Update(TEntity entityToUpdate)

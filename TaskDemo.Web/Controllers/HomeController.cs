@@ -32,7 +32,7 @@ namespace TaskDemo.Web.Controllers
             int? parentId = null;
             if (id.HasValue)
             {
-                var task = _taskRepo.GetByID(id);
+                var task = _taskRepo.GetById(id);
                 if (task != null)
                 {
                     parentId = task.ParentId;
@@ -59,7 +59,7 @@ namespace TaskDemo.Web.Controllers
                 return View(new TaskCreateModel ());
             }
 
-            var task = _taskRepo.GetByID(parentId);
+            var task = _taskRepo.GetById(parentId);
             if (task != null)
             {
                 return View(new TaskCreateModel { ParentId = parentId });
@@ -103,7 +103,7 @@ namespace TaskDemo.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var task = _taskRepo.GetByID(id);
+            var task = _taskRepo.GetById(id);
             if (task != null)
             {
                 return View(new TaskEditModel { Id = id, Name = task.Name, ParentId = task.ParentId});
@@ -116,7 +116,7 @@ namespace TaskDemo.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var task = _taskRepo.GetByID(model.Id);
+                var task = _taskRepo.GetById(model.Id);
                 task.Name = model.Name;
 
                 _taskRepo.Update(task);
@@ -143,7 +143,7 @@ namespace TaskDemo.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            var temp = _taskRepo.GetByID(id);
+            var temp = _taskRepo.GetById(id);
             if (temp != null)
             {
                 var parentId = temp.ParentId;

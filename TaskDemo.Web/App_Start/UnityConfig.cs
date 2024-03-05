@@ -1,11 +1,12 @@
 using System;
-using Microsoft.Practices.Unity;
+using System.Data.Entity;
 using TaskDemo.Data.Common;
 using TaskDemo.Data.Common.EntityFramework;
 using TaskDemo.Data.Common.Repository;
-using System.Data.Entity;
 using TaskDemo.Data.EF;
 using TaskDemo.Data.Repository;
+using Unity;
+using Unity.Lifetime;
 
 namespace TaskDemo.Web.App_Start
 {
@@ -15,7 +16,7 @@ namespace TaskDemo.Web.App_Start
     public class UnityConfig
     {
         #region Unity Container
-        private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
+        private static readonly Lazy<IUnityContainer> Container = new Lazy<IUnityContainer>(() =>
         {
             var container = new UnityContainer();
             RegisterTypes(container);
@@ -27,7 +28,7 @@ namespace TaskDemo.Web.App_Start
         /// </summary>
         public static IUnityContainer GetConfiguredContainer()
         {
-            return container.Value;
+            return Container.Value;
         }
         #endregion
 
